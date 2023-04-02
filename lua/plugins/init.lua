@@ -18,7 +18,9 @@ local plugins = util.merge_list(
   require("plugins.editor"),
   require("plugins.ui"),
   require("plugins.colorscheme"),
-  require("plugins.treesitter")
+  require("plugins.treesitter"),
+  require("plugins.coding"),
+  require("plugins.lsp")
 )
 
 require("lazy").setup(plugins)

@@ -8,7 +8,7 @@ return {
         function()
           require("notify").dismiss({ silent = true, pending = true })
         end,
-        desc = "Delete all Notifications",
+        desc = "Dismiss notifications",
       },
     },
     opts = {
@@ -24,6 +24,7 @@ return {
   -- Noicer UI
   {
     "folke/noice.nvim",
+    event = "VeryLazy",
     opts = {
       lsp = {
         override = {
@@ -84,11 +85,18 @@ return {
         options = {
           theme = "auto",
           globalstatus = true,
+          component_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
           disabled_filetypes = { statusline = { "dashboard", "alpha" } },
         },
         sections = {
           lualine_a = { "mode" },
-          lualine_b = { "branch" },
+          lualine_b = {
+            {
+              "branch",
+              icon = "",
+            },
+          },
           lualine_c = {
             {
               "diagnostics",
@@ -126,14 +134,10 @@ return {
             },
           },
           lualine_y = {
-            { "progress", separator = " ", padding = { left = 1, right = 0 } },
+            -- { "progress", separator = " ", padding = { left = 1, right = 0 } },
             { "location", padding = { left = 0, right = 1 } },
           },
-          lualine_z = {
-            function()
-              return " " .. os.date("%R")
-            end,
-          },
+          lualine_z = {},
         },
         extensions = { "neo-tree", "lazy" },
       }

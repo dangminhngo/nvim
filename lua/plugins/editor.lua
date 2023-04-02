@@ -41,7 +41,6 @@ return {
         follow_current_file = true,
       },
       window = {
-        width = 36,
         mappings = {
           ["o"] = "open",
         },
@@ -62,17 +61,17 @@ return {
         git_status = {
           symbols = {
             -- Change type
-            added     = "樂", -- or "✚", but this is redundant info if you use git_status_colors on the name
-            modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
-            deleted   = "",-- this can only be used in the git_status source
-            renamed   = "",-- this can only be used in the git_status source
+            added = "樂", -- or "✚", but this is redundant info if you use git_status_colors on the name
+            modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
+            deleted = "", -- this can only be used in the git_status source
+            renamed = "", -- this can only be used in the git_status source
             -- Status type
             untracked = "",
-            ignored   = "",
-            unstaged  = "",
-            staged    = "",
-            conflict  = "",
-          }
+            ignored = "",
+            unstaged = "",
+            staged = "",
+            conflict = "",
+          },
         },
       },
     },
@@ -271,7 +270,10 @@ return {
   {
     "RRethy/vim-illuminate",
     event = { "BufReadPost", "BufNewFile" },
-    opts = { delay = 200 },
+    opts = {
+      delay = 200,
+      min_count_to_highlight = 2,
+    },
     config = function(_, opts)
       require("illuminate").configure(opts)
 

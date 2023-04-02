@@ -1,15 +1,15 @@
 return {
   icons = {
     diagnostics = {
-      Error = "ﮏ",
-      Warn = "",
-      Hint = "",
-      Info = "",
+      Error = "ﮏ ",
+      Warn = " ",
+      Hint = " ",
+      Info = " ",
     },
     git = {
       added = "烙",
-      modified = "",
-      removed = "ﮖ",
+      modified = " ",
+      removed = "ﮖ ",
     },
     kinds = {
       Array = " ",
