@@ -41,8 +41,9 @@ return {
         follow_current_file = true,
       },
       window = {
+        width = 36,
         mappings = {
-          ["<space>"] = "none",
+          ["o"] = "open",
         },
       },
       default_component_configs = {
@@ -51,6 +52,27 @@ return {
           expander_collapsed = "",
           expander_expanded = "",
           expander_highlight = "NeoTreeExpander",
+        },
+        icon = {
+          folder_closed = "",
+          folder_open = "ﱮ",
+          folder_empty = "",
+          default = "",
+        },
+        git_status = {
+          symbols = {
+            -- Change type
+            added     = "樂", -- or "✚", but this is redundant info if you use git_status_colors on the name
+            modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
+            deleted   = "",-- this can only be used in the git_status source
+            renamed   = "",-- this can only be used in the git_status source
+            -- Status type
+            untracked = "",
+            ignored   = "",
+            unstaged  = "",
+            staged    = "",
+            conflict  = "",
+          }
         },
       },
     },
@@ -209,7 +231,6 @@ return {
       wk.register(keymaps)
     end,
   },
-
   -- Gitsigns
   {
     "lewis6991/gitsigns.nvim",
@@ -277,7 +298,6 @@ return {
       { "[[", desc = "Prev Reference" },
     },
   },
-
   -- Buffer remove
   {
     "echasnovski/mini.bufremove",
@@ -287,7 +307,6 @@ return {
       { "<leader>bD", function() require("mini.bufremove").delete(0, true) end, desc = "Delete Buffer (Force)" },
     },
   },
-
   -- Better diagnostics list and others
   {
     "folke/trouble.nvim",
@@ -322,7 +341,6 @@ return {
       },
     },
   },
-
   -- Todo comments
   {
     "folke/todo-comments.nvim",
