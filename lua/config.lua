@@ -1,10 +1,10 @@
 return {
   icons = {
     diagnostics = {
-      Error = "ﮏ ",
+      Error = "ﲤ ",
       Warn = " ",
       Hint = " ",
-      Info = " ",
+      Info = " ",
     },
     git = {
       added = "烙",
