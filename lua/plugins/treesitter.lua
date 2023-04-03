@@ -25,9 +25,8 @@ return {
           end
         end,
       },
-      {
-        "mrjones2014/nvim-ts-rainbow",
-      },
+      "mrjones2014/nvim-ts-rainbow",
+      "windwp/nvim-ts-autotag",
     },
     keys = {
       { "<c-space>", desc = "Increment selection" },
@@ -69,6 +68,7 @@ return {
         extended_mode = true,
         max_file_lines = 1000,
       },
+      autotag = { enable = true },
     },
     ---@param opts TSConfig
     config = function(_, opts)
