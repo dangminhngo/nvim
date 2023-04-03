@@ -7,9 +7,9 @@ return {
       Info = " ",
     },
     git = {
-      added = "烙",
+      added = "落",
       modified = " ",
-      removed = "ﮖ ",
+      removed = " ",
     },
     kinds = {
       Array = " ",

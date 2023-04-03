@@ -90,12 +90,33 @@ return {
           disabled_filetypes = { statusline = { "dashboard", "alpha" } },
         },
         sections = {
-          lualine_a = { "mode" },
-          lualine_b = {
+          lualine_a = {
+            -- mode
             {
-              "branch",
-              icon = "",
+              function()
+                local alias = {
+                  n = "  NORMAL", -- normal
+                  v = "󰈈  VISUAL", -- visual
+                  V = "󰈈  V-LINE", -- visual-line
+                  [""] = "󰈈  V-BLOCK", -- visual-block
+                  s = "󱡹  SELECT", -- select
+                  S = "󱡹  S-LINE", -- select-line
+                  [""] = "󱡹  S-BLOCK", -- select-block
+                  i = "󱍓  INSERT", -- insert
+                  R = "REPLACE", -- replace
+                  c = "גּ  COMMAND", -- command
+                  r = "󱂕  PROMPT", -- prompt
+                  ["!"] = "  EXTERNAL", -- external
+                  t = "  TERMINAL", -- terminal
+                }
+                return alias[vim.fn.mode()]
+              end,
+              padding = { left = 2, right = 2 },
             },
+          },
+          lualine_b = {
+            { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+            { "filename", path = 1, symbols = { modified = " ﱣ ", readonly = "", unnamed = "" } },
           },
           lualine_c = {
             {
@@ -107,8 +128,6 @@ return {
                 hint = icons.diagnostics.Hint,
               },
             },
-            { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-            { "filename", path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
           },
           lualine_x = {
             -- stylua: ignore
@@ -134,10 +153,16 @@ return {
             },
           },
           lualine_y = {
-            -- { "progress", separator = " ", padding = { left = 1, right = 0 } },
-            { "location", padding = { left = 0, right = 1 } },
+            { "progress", separator = " ", padding = { left = 2, right = 1 } },
+            { "location", padding = { left = 1, right = 2 } },
           },
-          lualine_z = {},
+          lualine_z = {
+            {
+              "branch",
+              icon = "",
+              padding = { left = 2, right = 2 },
+            },
+          },
         },
         extensions = { "neo-tree", "lazy" },
       }
