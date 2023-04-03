@@ -25,6 +25,7 @@ return {
       format = {
         formatting_options = nil,
         timeout_ms = nil,
+        async = true,
       },
       -- LSP Server Settings
       ---@type lspconfig.options
@@ -113,7 +114,7 @@ return {
 
       -- get all the servers that are available through mason-lspconfig
       local have_mason, mlsp = pcall(require, "mason-lspconfig")
-      
+
       local ensure_installed = {} ---@type string[]
       for server, server_opts in pairs(servers) do
         if server_opts then
