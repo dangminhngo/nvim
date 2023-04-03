@@ -25,6 +25,9 @@ return {
           end
         end,
       },
+      {
+        "mrjones2014/nvim-ts-rainbow",
+      },
     },
     keys = {
       { "<c-space>", desc = "Increment selection" },
@@ -60,6 +63,11 @@ return {
           scope_incremental = "<nop>",
           node_decremental = "<bs>",
         },
+      },
+      rainbow = {
+        enable = true,
+        extended_mode = true,
+        max_file_lines = 1000,
       },
     },
     ---@param opts TSConfig
