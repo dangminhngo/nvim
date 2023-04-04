@@ -11,17 +11,17 @@ return {
         function()
           require("neo-tree.command").execute({ toggle = true, dir = require("util").get_root() })
         end,
-        desc = "Explorer NeoTree (root dir)",
+        desc = "File tree (root)",
       },
       {
         "<leader>fE",
         function()
           require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
         end,
-        desc = "Explorer NeoTree (cwd)",
+        desc = "File tree (cwd)",
       },
-      { "<leader>e", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
-      { "<leader>E", "<leader>fE", desc = "Explorer NeoTree (cwd)", remap = true },
+      { "<leader>e", "<leader>fe", desc = "File tree (root)", remap = true },
+      { "<leader>E", "<leader>fE", desc = "File tree (cwd)", remap = true },
     },
     deactivate = function()
       vim.cmd([[Neotree close]])
@@ -90,34 +90,34 @@ return {
     cmd = "Telescope",
     version = false, -- telescope did only one release, so use HEAD for now
     keys = {
-      { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
-      { "<leader>/", util.telescope("live_grep"), desc = "Find in Files (Grep)" },
-      { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-      { "<leader><space>", util.telescope("files"), desc = "Find Files (root dir)" },
+      { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch buffer" },
+      { "<leader>/", util.telescope("live_grep"), desc = "Find in files (Grep)" },
+      { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command history" },
+      { "<leader><space>", util.telescope("files"), desc = "Find files (root)" },
       -- find
       { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-      { "<leader>ff", util.telescope("files"), desc = "Find Files (root dir)" },
-      { "<leader>fF", util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
+      { "<leader>ff", util.telescope("files"), desc = "Find files (root dir)" },
+      { "<leader>fF", util.telescope("files", { cwd = false }), desc = "Find files (cwd)" },
       { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
       -- git
-      { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
-      { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "status" },
+      { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Commits" },
+      { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "Status" },
       -- search
-      { "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
+      { "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto commands" },
       { "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
-      { "<leader>sc", "<cmd>Telescope command_history<cr>", desc = "Command History" },
+      { "<leader>sc", "<cmd>Telescope command_history<cr>", desc = "Command history" },
       { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
       { "<leader>sd", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
-      { "<leader>sg", util.telescope("live_grep"), desc = "Grep (root dir)" },
+      { "<leader>sg", util.telescope("live_grep"), desc = "Grep (root)" },
       { "<leader>sG", util.telescope("live_grep", { cwd = false }), desc = "Grep (cwd)" },
-      { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
-      { "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
-      { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
-      { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
-      { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
+      { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help pages" },
+      { "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search highlight groups" },
+      { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Key maps" },
+      { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man pages" },
+      { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to mark" },
       { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
       { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
-      { "<leader>sw", util.telescope("grep_string"), desc = "Word (root dir)" },
+      { "<leader>sw", util.telescope("grep_string"), desc = "Word (root)" },
       { "<leader>sW", util.telescope("grep_string", { cwd = false }), desc = "Word (cwd)" },
       { "<leader>uC", util.telescope("colorscheme", { enable_preview = true }), desc = "Colorscheme with preview" },
       {
@@ -213,20 +213,20 @@ return {
         ["gz"] = { name = "+surround" },
         ["]"] = { name = "+next" },
         ["["] = { name = "+prev" },
-        ["<leader><tab>"] = { name = "+tabs" },
-        ["<leader>b"] = { name = "+buffer" },
-        ["<leader>c"] = { name = "+code" },
-        ["<leader>f"] = { name = "+file/find" },
-        ["<leader>g"] = { name = "+git" },
-        ["<leader>gh"] = { name = "+hunks" },
-        ["<leader>q"] = { name = "+quit/session" },
-        ["<leader>s"] = { name = "+search" },
-        ["<leader>u"] = { name = "+ui" },
-        ["<leader>w"] = { name = "+windows" },
-        ["<leader>x"] = { name = "+diagnostics/quickfix" },
+        ["<leader><tab>"] = { name = "+Tabs" },
+        ["<leader>b"] = { name = "+Buffer" },
+        ["<leader>c"] = { name = "+Code" },
+        ["<leader>f"] = { name = "+File/find" },
+        ["<leader>g"] = { name = "+Git" },
+        ["<leader>gh"] = { name = "+Hunks" },
+        ["<leader>q"] = { name = "+Quit/Session" },
+        ["<leader>s"] = { name = "+Search" },
+        ["<leader>u"] = { name = "+UI" },
+        ["<leader>w"] = { name = "+Windows" },
+        ["<leader>x"] = { name = "+Diagnostics/Quickfix" },
       }
 
-      keymaps["<leader>sn"] = { name = "+noice" }
+      keymaps["<leader>sn"] = { name = "+Noice" }
       wk.register(keymaps)
     end,
   },
@@ -251,18 +251,18 @@ return {
         end
 
         -- stylua: ignore start
-        map("n", "]h", gs.next_hunk, "Next Hunk")
-        map("n", "[h", gs.prev_hunk, "Prev Hunk")
-        map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
-        map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
-        map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
-        map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
-        map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
-        map("n", "<leader>ghp", gs.preview_hunk, "Preview Hunk")
-        map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame Line")
-        map("n", "<leader>ghd", gs.diffthis, "Diff This")
-        map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
-        map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+        map("n", "]h", gs.next_hunk, "Next hunk")
+        map("n", "[h", gs.prev_hunk, "Prev hunk")
+        map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage hunk")
+        map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset hunk")
+        map("n", "<leader>ghS", gs.stage_buffer, "Stage buffer")
+        map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo stage hunk")
+        map("n", "<leader>ghR", gs.reset_buffer, "Reset buffer")
+        map("n", "<leader>ghp", gs.preview_hunk, "Preview hunk")
+        map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame line")
+        map("n", "<leader>ghd", gs.diffthis, "Diff this")
+        map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff this ~")
+        map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "Gitsigns select hunk")
       end,
     },
   },
@@ -296,8 +296,8 @@ return {
       })
     end,
     keys = {
-      { "]]", desc = "Next Reference" },
-      { "[[", desc = "Prev Reference" },
+      { "]]", desc = "Next reference" },
+      { "[[", desc = "Prev reference" },
     },
   },
   -- Buffer remove
@@ -305,8 +305,8 @@ return {
     "echasnovski/mini.bufremove",
     -- stylua: ignore
     keys = {
-      { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "Delete Buffer" },
-      { "<leader>bD", function() require("mini.bufremove").delete(0, true) end, desc = "Delete Buffer (Force)" },
+      { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "Delete buffer" },
+      { "<leader>bD", function() require("mini.bufremove").delete(0, true) end, desc = "Delete buffer (force)" },
     },
   },
   -- Better diagnostics list and others
@@ -315,10 +315,10 @@ return {
     cmd = { "TroubleToggle", "Trouble" },
     opts = { use_diagnostic_signs = true },
     keys = {
-      { "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
-      { "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
-      { "<leader>xL", "<cmd>TroubleToggle loclist<cr>", desc = "Location List (Trouble)" },
-      { "<leader>xQ", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
+      { "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document diagnostics (trouble)" },
+      { "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace diagnostics (trouble)" },
+      { "<leader>xL", "<cmd>TroubleToggle loclist<cr>", desc = "Location list (trouble)" },
+      { "<leader>xQ", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix list (trouble)" },
       {
         "[q",
         function()
@@ -353,8 +353,8 @@ return {
     keys = {
       { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
       { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
-      { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
-      { "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
+      { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (trouble)" },
+      { "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme (trouble)" },
       { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
     },
   },

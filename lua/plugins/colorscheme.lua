@@ -1,11 +1,11 @@
 return {
   {
-    dir = "/home/jaime/repos/proxima.nvim",
-    dev = true,
+    "dangminhngo/proxima.nvim",
     lazy = true,
     opts = {
       styles = {
         attributes = "italic",
+        comment = "italic",
       },
     },
     init = function()

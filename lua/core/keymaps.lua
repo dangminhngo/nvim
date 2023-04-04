@@ -40,11 +40,11 @@ map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
-map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to other buffer" })
+map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to other buffer" })
 
 -- Clear search with <esc>
-map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
+map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape & Clear hlsearch" })
 
 -- Clear search, diff update and redraw
 -- taken from runtime/lua/_editor.lua
@@ -81,10 +81,10 @@ map("v", ">", ">gv")
 map("n", "<leader>l", "<cmd>:Lazy<cr>", { desc = "Lazy" })
 
 -- new file
-map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
+map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New file" })
 
-map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location List" })
-map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })
+map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location list" })
+map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix list" })
 
 -- trouble.nvim
 map("n", "[q", vim.cmd.cprev, { desc = "Previous quickfix" })
@@ -94,15 +94,16 @@ map("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
 
 -- toggle options
 -- map("n", "<leader>uf", require("lazyvim.plugins.lsp.format").toggle, { desc = "Toggle format on Save" })
-map("n", "<leader>us", function() util.toggle("spell") end, { desc = "Toggle Spelling" })
-map("n", "<leader>uw", function() util.toggle("wrap") end, { desc = "Toggle Word Wrap" })
-map("n", "<leader>ul", function() util.toggle("relativenumber", true) util.toggle("number") end, { desc = "Toggle Line Numbers" })
-map("n", "<leader>ud", util.toggle_diagnostics, { desc = "Toggle Diagnostics" })
+map("n", "<leader>us", function() util.toggle("spell") end, { desc = "Toggle spelling" })
+map("n", "<leader>uw", function() util.toggle("wrap") end, { desc = "Toggle word wrap" })
+map("n", "<leader>ul", function() util.toggle("number") end, { desc = "Toggle line numbers" })
+map("n", "<leader>uR", function() util.toggle("relativenumber") end, { desc = "Toggle relative numbers" })
+map("n", "<leader>ud", util.toggle_diagnostics, { desc = "Toggle diagnostics" })
 local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
-map("n", "<leader>uc", function() util.toggle("conceallevel", false, {0, conceallevel}) end, { desc = "Toggle Conceal" })
+map("n", "<leader>uc", function() util.toggle("conceallevel", false, {0, conceallevel}) end, { desc = "Toggle conceal" })
 
 -- lazygit
-map("n", "<leader>gg", function() util.float_term({ "lazygit" }, { cwd = util.get_root() }) end, { desc = "Lazygit (root dir)" })
+map("n", "<leader>gg", function() util.float_term({ "lazygit" }, { cwd = util.get_root() }) end, { desc = "Lazygit (root)" })
 map("n", "<leader>gG", function() util.float_term({ "lazygit" }) end, { desc = "Lazygit (cwd)" })
 
 -- quit
@@ -110,13 +111,13 @@ map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 
 -- highlights under cursor
 if vim.fn.has("nvim-0.9.0") == 1 then
-  map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
+  map("n", "<leader>ui", vim.show_pos, { desc = "Inspect pos" })
 end
 
 -- floating terminal
-map("n", "<leader>ft", function() util.float_term(nil, { cwd = util.get_root() }) end, { desc = "Terminal (root dir)" })
+map("n", "<leader>ft", function() util.float_term(nil, { cwd = util.get_root() }) end, { desc = "Terminal (root)" })
 map("n", "<leader>fT", function() util.float_term() end, { desc = "Terminal (cwd)" })
-map("t", "<esc><esc>", "<c-\\><c-n>", {desc = "Enter Normal Mode"})
+map("t", "<esc><esc>", "<c-\\><c-n>", {desc = "Enter normal mode"})
 
 -- windows
 map("n", "<leader>ww", "<C-W>p", { desc = "Other window" })
@@ -127,9 +128,9 @@ map("n", "<leader>-", "<C-W>s", { desc = "Split window below" })
 map("n", "<leader>|", "<C-W>v", { desc = "Split window right" })
 
 -- tabs
-map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
-map("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
-map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
-map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
-map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
-map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last tab" })
+map("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First tab" })
+map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New tab" })
+map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next tab" })
+map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close tab" })
+map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous tab" })

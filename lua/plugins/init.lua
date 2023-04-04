@@ -15,9 +15,9 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = util.merge_list(
   require("plugins.util"),
+  require("plugins.colorscheme"),
   require("plugins.editor"),
   require("plugins.ui"),
-  require("plugins.colorscheme"),
   require("plugins.treesitter"),
   require("plugins.coding"),
   require("plugins.lsp")

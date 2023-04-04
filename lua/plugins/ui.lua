@@ -91,30 +91,7 @@ return {
           disabled_filetypes = { statusline = { "dashboard", "alpha" } },
         },
         sections = {
-          lualine_a = {
-            -- mode
-            {
-              function()
-                local alias = {
-                  n = "  NORMAL", -- normal
-                  v = "󰈈  VISUAL", -- visual
-                  V = "󰈈  V-LINE", -- visual-line
-                  [""] = "󰈈  V-BLOCK", -- visual-block
-                  s = "󱡹  SELECT", -- select
-                  S = "󱡹  S-LINE", -- select-line
-                  [""] = "󱡹  S-BLOCK", -- select-block
-                  i = "󱍓  INSERT", -- insert
-                  R = "REPLACE", -- replace
-                  c = "גּ  COMMAND", -- command
-                  r = "󱂕  PROMPT", -- prompt
-                  ["!"] = "  EXTERNAL", -- external
-                  t = "  TERMINAL", -- terminal
-                }
-                return alias[vim.fn.mode()]
-              end,
-              padding = { left = 2, right = 2 },
-            },
-          },
+          lualine_a = { "mode" },
           lualine_b = {
             { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
             { "filename", path = 1, symbols = { modified = " ﱣ ", readonly = "", unnamed = "" } },
@@ -154,14 +131,13 @@ return {
             },
           },
           lualine_y = {
-            { "progress", separator = " ", padding = { left = 2, right = 1 } },
-            { "location", padding = { left = 1, right = 2 } },
+            { "progress", separator = " ", padding = { left = 1, right = 1 } },
+            { "location", padding = { left = 1, right = 1 } },
           },
           lualine_z = {
             {
               "branch",
               icon = "",
-              padding = { left = 2, right = 2 },
             },
           },
         },
