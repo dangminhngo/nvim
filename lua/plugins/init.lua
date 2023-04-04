@@ -13,7 +13,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local plugins = util.merge_list(
+local plugins = util.merge_lists(
   require("plugins.util"),
   require("plugins.colorscheme"),
   require("plugins.editor"),
