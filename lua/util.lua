@@ -2,15 +2,6 @@ local M = {}
 
 M.root_patterns = { ".git", "lua" }
 
-M.merge_lists = function(...)
-  local arg = { ... }
-  local result = {}
-  for _, ls in ipairs(arg) do
-    vim.list_extend(result, ls)
-  end
-  return result
-end
-
 ---@param on_attach fun(client, buffer)
 function M.on_attach(on_attach)
   vim.api.nvim_create_autocmd("LspAttach", {
