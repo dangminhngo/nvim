@@ -1,6 +1,6 @@
 return {
   {
-    dir = "/home/jaime/repos/proxima.nvim",
+    "dangminhngo/proxima.nvim",
     lazy = true,
     opts = {
       styles = {
