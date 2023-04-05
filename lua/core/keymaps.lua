@@ -44,7 +44,12 @@ map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to other buffer" })
 map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to other buffer" })
 
 -- Clear search with <esc>
-map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape & Clear hlsearch" })
+map(
+  { "i", "n" },
+  "<esc>",
+  "<cmd>ClearSearchAndDismissNotifications<cr><esc>",
+  { desc = "Escape/Clear hlsearch/Dismiss notifications" }
+)
 
 -- Clear search, diff update and redraw
 -- taken from runtime/lua/_editor.lua

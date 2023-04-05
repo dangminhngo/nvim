@@ -1,15 +1,15 @@
 return {
   {
-    "dangminhngo/proxima.nvim",
+    dir = "/home/jaime/repos/proxima.nvim",
     lazy = true,
     opts = {
       styles = {
-        attributes = "italic",
+        attribute = "italic",
         comment = "italic",
       },
     },
     init = function()
-      vim.cmd("colorscheme proxima")
+      vim.cmd([[colorscheme proxima]])
     end,
   },
 }

@@ -1,5 +1,4 @@
 return {
-
   -- snippets
   {
     "L3MON4D3/LuaSnip",
@@ -51,6 +50,10 @@ return {
           expand = function(args)
             require("luasnip").lsp_expand(args.body)
           end,
+        },
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
