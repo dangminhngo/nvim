@@ -20,7 +20,7 @@ return {
         severity_sort = true,
       },
       -- Automatically format on save
-      autoformat = true,
+      autoformat = false,
       -- options for vim.lsp.buf.format
       format = {
         formatting_options = nil,
