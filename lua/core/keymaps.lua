@@ -98,7 +98,7 @@ map("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
 -- stylua: ignore start
 
 -- toggle options
--- map("n", "<leader>uf", require("lazyvim.plugins.lsp.format").toggle, { desc = "Toggle format on Save" })
+map("n", "<leader>uf", require("plugins.lsp.format").toggle, { desc = "Toggle format on Save" })
 map("n", "<leader>us", function() util.toggle("spell") end, { desc = "Toggle spelling" })
 map("n", "<leader>uw", function() util.toggle("wrap") end, { desc = "Toggle word wrap" })
 map("n", "<leader>ul", function() util.toggle("number") end, { desc = "Toggle line numbers" })
