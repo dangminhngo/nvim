@@ -10,7 +10,6 @@ return {
         dashboard = true,
         diff = true,
         gitsigns = true,
-        indent_blankline = true,
         lazy = true,
         mini = true,
         neo_tree = true,
