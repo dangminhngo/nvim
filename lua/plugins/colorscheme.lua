@@ -19,7 +19,7 @@ return {
         telescope = true,
         trouble = true,
         which_key = true,
-      }
+      },
     },
     init = function()
       vim.cmd([[colorscheme proxima]])
