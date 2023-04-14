@@ -216,7 +216,7 @@ return {
         ["<leader><tab>"] = { name = "+Tabs" },
         ["<leader>b"] = { name = "+Buffer" },
         ["<leader>c"] = { name = "+Code" },
-        ["<leader>f"] = { name = "+File/find" },
+        ["<leader>f"] = { name = "+File/Find" },
         ["<leader>g"] = { name = "+Git" },
         ["<leader>gh"] = { name = "+Hunks" },
         ["<leader>q"] = { name = "+Quit/Session" },
