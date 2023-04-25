@@ -124,10 +124,23 @@ function M.toggle_diagnostics()
   enabled = not enabled
   if enabled then
     vim.diagnostic.enable()
-    util.info("Enabled diagnostics", { title = "Diagnostics" })
+    util.info("Diagnostics: Enabled", { title = "Diagnostics" })
   else
     vim.diagnostic.disable()
-    util.warn("Disabled diagnostics", { title = "Diagnostics" })
+    util.warn("Diagnostics: Disabled", { title = "Diagnostics" })
+  end
+end
+
+local zen_enabled = false
+function M.toggle_zen()
+  local util = require("lazy.core.util")
+  zen_enabled = not zen_enabled
+  if zen_enabled then
+    require("zen-mode").open()
+    util.info("Zen mode: Enabled", { title = "Zen mode" })
+  else
+    require("zen-mode").close()
+    util.info("Zen mode: Disabled", { title = "Zen mode" })
   end
 end
 

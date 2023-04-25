@@ -243,6 +243,22 @@ return {
       wk.register(keymaps)
     end,
   },
+  -- Zen mode
+  {
+    "folke/zen-mode.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = { "folke/twilight.nvim" },
+    lazy = true,
+    keys = {
+      { "<leader>uz", util.toggle_zen, desc = "Toggle zen mode" },
+    },
+  },
+  -- Distractions free
+  {
+    "folke/twilight.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    lazy = true,
+  },
   -- Gitsigns
   {
     "lewis6991/gitsigns.nvim",
