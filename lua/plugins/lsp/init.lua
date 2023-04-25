@@ -27,7 +27,7 @@ return {
       format = {
         formatting_options = nil,
         timeout_ms = nil,
-        async = true,
+        -- async = true,
       },
       -- LSP Server Settings
       ---@type lspconfig.options
