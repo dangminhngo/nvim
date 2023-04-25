@@ -39,6 +39,7 @@ return {
       filesystem = {
         bind_to_cwd = false,
         follow_current_file = true,
+        use_libuv_file_watcher = true,
       },
       window = {
         mappings = {
@@ -75,10 +76,21 @@ return {
         },
       },
     },
+    config = function(_, opts)
+      require("neo-tree").setup(opts)
+      vim.api.nvim_create_autocmd("TermClose", {
+        pattern = "*lazygit",
+        callback = function()
+          if package.loaded["neo-tree.sources.git_status"] then
+            require("neo-tree.sources.git_status").refresh()
+          end
+        end,
+      })
+    end,
   },
   -- Search/Replace in multiple files
   {
-    "windwp/nvim-spectre",
+    "nvim-pack/nvim-spectre",
     -- stylua: ignore
     keys = {
       { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
@@ -96,9 +108,10 @@ return {
       { "<leader><space>", util.telescope("files"), desc = "Find files (root)" },
       -- find
       { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-      { "<leader>ff", util.telescope("files"), desc = "Find files (root dir)" },
+      { "<leader>ff", util.telescope("files"), desc = "Find files (root)" },
       { "<leader>fF", util.telescope("files", { cwd = false }), desc = "Find files (cwd)" },
       { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
+      { "<leader>fR", util.telescope("oldfiles", { cwd = vim.loop.cwd() }), desc = "Recent (cwd)" },
       -- git
       { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Commits" },
       { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "Status" },
@@ -285,6 +298,10 @@ return {
     keys = {
       { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "Delete buffer" },
       { "<leader>bD", function() require("mini.bufremove").delete(0, true) end, desc = "Delete buffer (force)" },
+      { "<leader>bw", function() require("mini.bufremove").wipeout(0, false) end, desc = "Wipeout buffer" },
+      { "<leader>bW", function() require("mini.bufremove").wipeout(0, true) end, desc = "Wipeout buffer (force)" },
+      { "<leader>bu", function() require("mini.bufremove").unshow() end, desc = "Hide buffer all windows" },
+      { "<leader>bU", function() require("mini.bufremove").unshow_in_window() end, desc = "Hide buffer this window" },
     },
   },
   -- Better diagnostics list and others

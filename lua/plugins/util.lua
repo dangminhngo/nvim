@@ -1,33 +1,4 @@
 return {
-  -- Close buffers
-  {
-    "kazhala/close-buffers.nvim",
-    event = "VeryLazy",
-    lazy = true,
-    keys = {
-      {
-        "<leader>bh",
-        function()
-          require("close_buffers").delete({ type = "hidden" })
-        end,
-        desc = "Delete hidden",
-      },
-      {
-        "<leader>bo",
-        function()
-          require("close_buffers").wipe({ type = "other" })
-        end,
-        desc = "Wipe others",
-      },
-      {
-        "<leader>ba",
-        function()
-          require("close_buffers").wipe({ type = "all" })
-        end,
-        desc = "Wipe all",
-      },
-    },
-  },
   -- Measure startuptime
   {
     "dstein64/vim-startuptime",
