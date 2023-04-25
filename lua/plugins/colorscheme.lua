@@ -1,8 +1,8 @@
 return {
   {
-    dir = "/home/jaime/repos/proxima.nvim",
-    dev = true,
-    -- "dangminhngo/proxima.nvim",
+    -- dir = "/home/jaime/repos/proxima.nvim",
+    -- dev = true,
+    "dangminhngo/proxima.nvim",
     lazy = true,
     opts = {
       plugins = {

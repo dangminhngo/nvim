@@ -47,8 +47,8 @@ map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to other buffer" })
 map(
   { "i", "n" },
   "<esc>",
-  "<cmd>ClearSearchAndDismissNotifications<cr><esc>",
-  { desc = "Escape/Clear hlsearch/Dismiss notifications" }
+  "<cmd>noh<cr><esc>",
+  { desc = "Escape/Clear hlsearch" }
 )
 
 -- Clear search, diff update and redraw

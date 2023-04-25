@@ -26,19 +26,12 @@ return {
       -- options for vim.lsp.buf.format
       format = {
         formatting_options = nil,
-        timeout_ms = 2000,
-        -- async = true,
+        timeout_ms = nil,
+        async = true,
       },
       -- LSP Server Settings
       ---@type lspconfig.options
       servers = {
-        clangd = {},
-        cssls = {},
-        cssmodules_ls = {},
-        dockerls = {},
-        graphql = {},
-        html = {},
-        jsonls = {},
         lua_ls = {
           -- mason = false, -- set to false if you don't want this server to be installed with mason
           settings = {
@@ -55,9 +48,6 @@ return {
             },
           },
         },
-        pyright = {},
-        svelte = {},
-        tailwindcss = {},
         tsserver = {
           settings = {
             typescript = {
