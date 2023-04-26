@@ -49,28 +49,28 @@ return {
       default_component_configs = {
         indent = {
           with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
-          expander_collapsed = "",
-          expander_expanded = "",
+          expander_collapsed = "󰅀",
+          expander_expanded = "󰅃",
           expander_highlight = "NeoTreeExpander",
         },
         icon = {
-          folder_closed = "",
-          folder_open = "ﱮ",
-          folder_empty = "",
-          default = "",
+          folder_closed = "󰉋",
+          folder_open = "󰝰",
+          folder_empty = "󰷏",
+          default = "󰈙",
         },
         git_status = {
           symbols = {
             -- Change type
             added = "󰐙", -- or "✚", but this is redundant info if you use git_status_colors on the name
-            modified = "ﱣ", -- or "", but this is redundant info if you use git_status_colors on the name
-            deleted = "ﮁ", -- this can only be used in the git_status source
-            renamed = "﬍", -- this can only be used in the git_status source
+            modified = "󰆗", -- or "", but this is redundant info if you use git_status_colors on the name
+            deleted = "󰍷", -- this can only be used in the git_status source
+            renamed = "󰝶", -- this can only be used in the git_status source
             -- Status type
-            untracked = "",
-            ignored = "",
-            unstaged = "",
-            staged = "",
+            untracked = "󰮕",
+            ignored = "󱃓",
+            unstaged = "󰝦",
+            staged = "󰄳",
             conflict = "",
           },
         },
@@ -172,8 +172,8 @@ return {
     },
     opts = {
       defaults = {
-        prompt_prefix = " ",
-        selection_caret = " ",
+        prompt_prefix = "󰬪 ",
+        selection_caret = "󰅂 ",
         mappings = {
           i = {
             ["<c-t>"] = function(...)
@@ -265,12 +265,12 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       signs = {
-        add = { text = "▎" },
-        change = { text = "▎" },
-        delete = { text = "" },
-        topdelete = { text = "" },
-        changedelete = { text = "▎" },
-        untracked = { text = "▎" },
+        add = { text = "󰐕" },
+        change = { text = "󰦒" },
+        delete = { text = "󰍴" },
+        topdelete = { text = "󱎘" },
+        changedelete = { text = "󰅖" },
+        untracked = { text = "󰛑" },
       },
       on_attach = function(buffer)
         local gs = package.loaded.gitsigns
