@@ -239,7 +239,14 @@ return {
     end,
   },
   -- icons
-  { "nvim-tree/nvim-web-devicons", lazy = true },
+  {
+    "nvim-tree/nvim-web-devicons",
+    lazy = true,
+    opts = {
+      override_by_filename = require("config").devicons.filename,
+      override_by_extension = require("config").devicons.extension,
+    },
+  },
 
   -- ui components
   { "MunifTanjim/nui.nvim", lazy = true },

@@ -50,7 +50,7 @@ return {
         indent = {
           with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
           expander_collapsed = "󰅀",
-          expander_expanded = "󰅃",
+          expander_expanded = "󰅂",
           expander_highlight = "NeoTreeExpander",
         },
         icon = {
@@ -67,7 +67,7 @@ return {
             deleted = "󰍷", -- this can only be used in the git_status source
             renamed = "󰝶", -- this can only be used in the git_status source
             -- Status type
-            untracked = "󰮕",
+            untracked = "󰛑",
             ignored = "󱃓",
             unstaged = "󰝦",
             staged = "󰄳",
@@ -265,12 +265,12 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       signs = {
-        add = { text = "󰐕" },
+        add = { text = "+" },
         change = { text = "󰦒" },
-        delete = { text = "󰍴" },
+        delete = { text = "-" },
         topdelete = { text = "󱎘" },
         changedelete = { text = "󰅖" },
-        untracked = { text = "󰛑" },
+        untracked = { text = "󱀧" },
       },
       on_attach = function(buffer)
         local gs = package.loaded.gitsigns
