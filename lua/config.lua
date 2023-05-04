@@ -98,6 +98,11 @@ return {
         color = "#e8274b",
         name = "PackageJson",
       },
+      ["tailwind.config.js"] = {
+        icon = "󱏿",
+        color = "#38bdf8",
+        name = "TailwindConfigJs",
+      },
       ["webpack"] = {
         icon = "󰜫",
         color = "#519aba",
@@ -207,6 +212,12 @@ return {
         color = "#1354bf",
         cterm_color = "26",
         name = "TypeScriptReactSpec",
+      },
+      ["txt"] = {
+        icon = "󰎞",
+        color = "#89e051",
+        cterm_color = "113",
+        name = "Txt",
       },
       ["xml"] = {
         icon = "󰗀",
