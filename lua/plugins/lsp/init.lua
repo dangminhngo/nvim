@@ -26,7 +26,7 @@ return {
       -- options for vim.lsp.buf.format
       format = {
         formatting_options = nil,
-        timeout_ms = nil,
+        timeout_ms = 5000,
         -- async = true,
       },
       -- LSP Server Settings
