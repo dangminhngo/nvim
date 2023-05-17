@@ -96,9 +96,7 @@ return {
   {
     "echasnovski/mini.pairs",
     event = "VeryLazy",
-    config = function(_, opts)
-      require("mini.pairs").setup(opts)
-    end,
+    opts = {},
   },
 
   -- Surround
@@ -133,26 +131,13 @@ return {
         update_n_lines = "gzn", -- Update `n_lines`
       },
     },
-    config = function(_, opts)
-      -- use gz mappings instead of s to prevent conflict with leap
-      require("mini.surround").setup(opts)
-    end,
   },
 
   -- Comments
   {
     "echasnovski/mini.comment",
     event = "VeryLazy",
-    opts = {
-      hooks = {
-        pre = function()
-          require("ts_context_commentstring.internal").update_commentstring({})
-        end,
-      },
-    },
-    config = function(_, opts)
-      require("mini.comment").setup(opts)
-    end,
+    opts = {},
   },
 
   -- Colorizer
