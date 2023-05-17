@@ -39,6 +39,7 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "saadparwaiz1/cmp_luasnip",
+      { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
     },
     opts = function()
       local cmp = require("cmp")
@@ -75,12 +76,17 @@ return {
           { name = "path" },
         }),
         formatting = {
-          format = function(_, item)
-            local icons = require("config").icons.kinds
-            if icons[item.kind] then
-              item.kind = icons[item.kind] .. item.kind
+          format = function(entry, item)
+            local format_kinds = function(_, it)
+              local icons = require("config").icons.kinds
+              if icons[it.kind] then
+                it.kind = icons[it.kind] .. it.kind
+              end
+              return it
             end
-            return item
+
+            format_kinds(entry, item)
+            return require("tailwindcss-colorizer-cmp").formatter(entry, item)
           end,
         },
         experimental = {
@@ -146,6 +152,7 @@ return {
     opts = {
       filetypes = { "*" },
       user_default_options = {
+        tailwind = true,
         names = false,
         RRGGBBAA = true,
         css = true,
