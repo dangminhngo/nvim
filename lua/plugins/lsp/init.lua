@@ -10,6 +10,7 @@ return {
       "williamboman/mason-lspconfig.nvim",
       "hrsh7th/cmp-nvim-lsp",
       "jose-elias-alvarez/typescript.nvim",
+      { "b0o/SchemaStore.nvim", version = false },
     },
     ---@class PluginLspOpts
     opts = {
@@ -70,6 +71,28 @@ return {
           },
         },
         tailwindcss = {},
+        jsonls = {
+          on_new_config = function(new_config)
+            new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+            vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas({
+                select = {
+                  ".eslintrc",
+                  ".lintstagedrc",
+                  "Turborepo",
+                  "huskyrc",
+                  "package.json",
+                  "prettierrc.json",
+                  "tsconfig.json",
+                },
+            }))
+          end,
+          settings = {
+            json = {
+              format = { enable = true },
+              validate = { enable = true },
+            },
+          },
+        },
       },
       -- you can do any additional lsp server setup here
       -- return true if you don't want this server to be setup with lspconfig
