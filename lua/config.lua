@@ -159,6 +159,18 @@ return {
         cterm_color = "231",
         name = "Log",
       },
+      ["md"] = {
+        icon = "",
+        color = "#ffffff",
+        cterm_color = "231",
+        name = "Md",
+      },
+      ["mdx"] = {
+        icon = "",
+        color = "#519aba",
+        cterm_color = "74",
+        name = "Mdx",
+      },
       ["pdf"] = {
         icon = "󰈦",
         color = "#b30b00",
