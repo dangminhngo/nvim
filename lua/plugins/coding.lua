@@ -146,24 +146,6 @@ return {
       opts = {},
     },
 
-    -- Colorizer
-    {
-      "NvChad/nvim-colorizer.lua",
-      opts = {
-        filetypes = { "*" },
-        user_default_options = {
-          tailwind = true,
-          names = false,
-          RRGGBBAA = true,
-          css = true,
-          css_fn = true,
-        },
-      },
-      config = function(_, opts)
-        require("colorizer").setup(opts)
-      end,
-    },
-
     -- Better text-objects
     {
       "echasnovski/mini.ai",
