@@ -3,28 +3,91 @@ local util = require("util")
 return {
   -- File tree
   {
-    "stevearc/oil.nvim",
-    cmd = "Oil",
-    opts = {},
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    "nvim-neo-tree/neo-tree.nvim",
+    cmd = "Neotree",
     keys = {
       {
         "<leader>fe",
         function()
-          require("oil").toggle_float(require("util").get_root())
+          require("neo-tree.command").execute({ toggle = true, dir = require("util").get_root() })
         end,
         desc = "File tree (root)",
       },
       {
         "<leader>fE",
         function()
-          require("oil").toggle_float(vim.loop.cwd())
+          require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
         end,
         desc = "File tree (cwd)",
       },
       { "<leader>e", "<leader>fe", desc = "File tree (root)", remap = true },
       { "<leader>E", "<leader>fE", desc = "File tree (cwd)", remap = true },
     },
+    deactivate = function()
+      vim.cmd([[Neotree close]])
+    end,
+    init = function()
+      vim.g.neo_tree_remove_legacy_commands = 1
+      if vim.fn.argc() == 1 then
+        local stat = vim.loop.fs_stat(vim.fn.argv(0))
+        if stat and stat.type == "directory" then
+          require("neo-tree")
+        end
+      end
+    end,
+    opts = {
+      filesystem = {
+        bind_to_cwd = false,
+        follow_current_file = true,
+        use_libuv_file_watcher = true,
+      },
+      window = {
+        width = 32,
+        mappings = {
+          ["o"] = "open",
+        },
+      },
+      default_component_configs = {
+        indent = {
+          with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
+          expander_collapsed = "󰅂",
+          expander_expanded = "󰅀",
+          expander_highlight = "NeoTreeExpander",
+        },
+        icon = {
+          folder_closed = "󰉋",
+          folder_open = "󰝰",
+          folder_empty = "󰷏",
+          default = "󰈙",
+        },
+        git_status = {
+          symbols = {
+            -- Change type
+            added = "󰐙", -- or "✚", but this is redundant info if you use git_status_colors on the name
+            modified = "󰆗", -- or "", but this is redundant info if you use git_status_colors on the name
+            deleted = "󰍷", -- this can only be used in the git_status source
+            renamed = "󰝶", -- this can only be used in the git_status source
+            -- Status type
+            untracked = "󰛑",
+            ignored = "󱃓",
+            unstaged = "󰝦",
+            staged = "󰄳",
+            conflict = "",
+          },
+        },
+      },
+    },
+    config = function(_, opts)
+      require("neo-tree").setup(opts)
+      vim.api.nvim_create_autocmd("TermClose", {
+        pattern = "*lazygit",
+        callback = function()
+          if package.loaded["neo-tree.sources.git_status"] then
+            require("neo-tree.sources.git_status").refresh()
+          end
+        end,
+      })
+    end,
   },
   -- Search/Replace in multiple files
   {
