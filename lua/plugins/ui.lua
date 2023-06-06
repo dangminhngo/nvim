@@ -1,73 +1,4 @@
 return {
-  -- Notifications
-  {
-    "rcarriga/nvim-notify",
-    keys = {
-      {
-        "<leader>un",
-        function()
-          require("notify").dismiss({ silent = true, pending = true })
-        end,
-        desc = "Dismiss notifications",
-      },
-    },
-    opts = {
-      timeout = 1500,
-      max_height = function()
-        return math.floor(vim.o.lines * 0.75)
-      end,
-      max_width = function()
-        return math.floor(vim.o.columns * 0.75)
-      end,
-    },
-  },
-  -- Noicer UI
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    opts = {
-      lsp = {
-        override = {
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          ["vim.lsp.util.stylize_markdown"] = true,
-          ["cmp.entry.get_documentation"] = true,
-        },
-      },
-      presets = {
-        bottom_search = true,
-        command_palette = true,
-        long_message_to_split = true,
-      },
-      dependencies = {
-        "MunifTanjim/nui.nvim",
-        "rcarriga/nvim-notify",
-      },
-    },
-    -- stylua: ignore
-    keys = {
-      { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
-      { "<leader>snl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
-      { "<leader>snh", function() require("noice").cmd("history") end, desc = "Noice History" },
-      { "<leader>sna", function() require("noice").cmd("all") end, desc = "Noice All" },
-      { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true, desc = "Scroll forward", mode = {"i", "n", "s"} },
-      { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true, desc = "Scroll backward", mode = {"i", "n", "s"}},
-    },
-  },
-  -- Better UI
-  {
-    "stevearc/dressing.nvim",
-    lazy = true,
-    init = function()
-      vim.ui.select = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
-        return vim.ui.select(...)
-      end
-      vim.ui.input = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
-        return vim.ui.input(...)
-      end
-    end,
-  },
   --- Statusbar
   {
     "nvim-lualine/lualine.nvim",
@@ -167,13 +98,12 @@ return {
       })
     end,
   },
-  -- Dashboard
+  -- Starter
   {
-    "goolord/alpha-nvim",
-    event = "VimEnter",
-    opts = function()
-      local dashboard = require("alpha.themes.dashboard")
-      local logo = [[
+    "echasnovski/mini.starter",
+    version = false,
+    opts = {
+      header = [[
 ██████████    ████████████████████████
   ██████████    ████████████████████████
     ██████████    ████████████████████████
@@ -184,59 +114,12 @@ return {
     ██████████    ██████████    ██████████
   ██████████    ██████████    ██████████
 ██████████    ██████████    ██████████
-      ]]
-
-      dashboard.section.header.val = vim.split(logo, "\n")
-      dashboard.section.buttons.val = {
-        dashboard.button("f", "󰍉 " .. " Find file", ":Telescope find_files <CR>"),
-        -- dashboard.button("n", "󰈔 " .. " New file", ":ene <BAR> startinsert <CR>"),
-        dashboard.button("r", "󰈢 " .. " Recent files", ":Telescope oldfiles <CR>"),
-        dashboard.button("g", "󰘎 " .. " Find text", ":Telescope live_grep <CR>"),
-        dashboard.button("c", "󰒓 " .. " Configuration", ":e $MYVIMRC <CR>"),
-        dashboard.button("s", "󰦛 " .. " Restore Session", [[:lua require("persistence").load() <cr>]]),
-        dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>"),
-        -- dashboard.button("q", "󰍃 " .. " Quit", ":qa<CR>"),
-      }
-      for _, button in ipairs(dashboard.section.buttons.val) do
-        button.opts.hl = "AlphaButtons"
-        button.opts.hl_shortcut = "AlphaShortcut"
-      end
-      dashboard.section.header.opts.hl = "AlphaHeader"
-      dashboard.section.buttons.opts.hl = "AlphaButtons"
-      dashboard.section.footer.opts.hl = "AlphaFooter"
-      dashboard.opts.layout[1].val = 4
-      return dashboard
-    end,
-    config = function(_, dashboard)
-      -- close Lazy and re-open when the dashboard is ready
-      if vim.o.filetype == "lazy" then
-        vim.cmd.close()
-        vim.api.nvim_create_autocmd("User", {
-          pattern = "AlphaReady",
-          callback = function()
-            require("lazy").show()
-          end,
-        })
-      end
-
-      require("alpha").setup(dashboard.opts)
-
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "LazyVimStarted",
-        callback = function()
-          local stats = require("lazy").stats()
-          local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-          dashboard.section.footer.val = {
-            "󰉁󰉁󰉁 Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms.",
-            "",
-            "    Happy coding, Jaime! 🥳 🥳 🥳 ",
-          }
-          pcall(vim.cmd.AlphaRedraw)
-        end,
-      })
-    end,
+      ]],
+      items = nil,
+      footer = nil,
+    },
   },
-  -- icons
+  -- Icons
   {
     "nvim-tree/nvim-web-devicons",
     lazy = true,
@@ -246,6 +129,6 @@ return {
     },
   },
 
-  -- ui components
+  -- UI components (need for neo-tree)
   { "MunifTanjim/nui.nvim", lazy = true },
 }
