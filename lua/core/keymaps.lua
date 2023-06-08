@@ -42,6 +42,7 @@ map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to other buffer" })
 map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to other buffer" })
+map("n", "<leader>bo", "<cmd>%bd|e#<cr>", { desc = "Delete all but the current" })
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape/Clear hlsearch" })
