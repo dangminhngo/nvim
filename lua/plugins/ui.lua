@@ -24,9 +24,7 @@ return {
         },
         sections = {
           lualine_a = {
-            {
-              require("util.lualine").components.mode,
-            },
+            "mode",
           },
           lualine_b = {
             { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
