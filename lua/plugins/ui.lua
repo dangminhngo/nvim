@@ -19,14 +19,18 @@ return {
           theme = "auto",
           globalstatus = true,
           component_separators = { left = "", right = "" },
-          section_separators = { left = "▙", right = "▜" },
+          section_separators = { left = "", right = "" },
           disabled_filetypes = { statusline = { "dashboard", "alpha" } },
         },
         sections = {
-          lualine_a = { "mode" },
+          lualine_a = {
+            {
+              require("util.lualine").components.mode,
+            },
+          },
           lualine_b = {
             { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-            { "filename", path = 1, symbols = { modified = " 󰛿 ", readonly = "", unnamed = "" } },
+            { "filename", path = 1, symbols = { modified = " 󰝶 ", readonly = "", unnamed = "" } },
           },
           lualine_c = {
             {
