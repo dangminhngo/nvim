@@ -4,12 +4,11 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
-      { "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } },
+      { "folke/neoconf.nvim", cmd = "Neoconf",                                config = true },
+      { "folke/neodev.nvim",  opts = { experimental = { pathStrict = true } } },
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "hrsh7th/cmp-nvim-lsp",
-      "jose-elias-alvarez/typescript.nvim",
       { "b0o/SchemaStore.nvim", version = false },
     },
     ---@class PluginLspOpts
@@ -49,27 +48,6 @@ return {
             },
           },
         },
-        tsserver = {
-          settings = {
-            typescript = {
-              format = {
-                indentSize = vim.o.shiftwidth,
-                convertTabsToSpaces = vim.o.expandtab,
-                tabSize = vim.o.tabstop,
-              },
-            },
-            javascript = {
-              format = {
-                indentSize = vim.o.shiftwidth,
-                convertTabsToSpaces = vim.o.expandtab,
-                tabSize = vim.o.tabstop,
-              },
-            },
-            completions = {
-              completeFunctionCalls = true,
-            },
-          },
-        },
         tailwindcss = {},
         prismals = {},
         jsonls = {
@@ -104,19 +82,10 @@ return {
       -- return true if you don't want this server to be setup with lspconfig
       ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
       setup = {
-        -- example to setup with typescript.nvim
-        tsserver = function(_, opts)
-          require("util").on_attach(function(client, buffer)
-            if client.name == "tsserver" then
-              -- stylua: ignore
-              vim.keymap.set("n", "<leader>co", "<cmd>TypescriptOrganizeImports<CR>", { buffer = buffer, desc = "Organize Imports" })
-              -- stylua: ignore
-              vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<CR>", { desc = "Rename File", buffer = buffer })
-            end
-          end)
-          require("typescript").setup({ server = opts })
-          return true
-        end,
+        -- example setup
+        -- tsserver = function(_, opts)
+        --   -- setup goes here
+        -- end,
         -- Specify * to use this function as a fallback for any server
         -- ["*"] = function(server, opts) end,
       },
@@ -196,9 +165,6 @@ return {
       return {
         root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git"),
         sources = {
-          -- CODE ACTIONS
-          -- nls.builtins.code_actions.gitsigns,
-          require("typescript.extensions.null-ls.code-actions"),
           -- DIAGNOSTICS
           nls.builtins.diagnostics.eslint.with({
             filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte" },
@@ -206,16 +172,11 @@ return {
           }),
           nls.builtins.diagnostics.golangci_lint,
           nls.builtins.diagnostics.luacheck,
-          -- nls.builtins.diagnostics.markdownlint,
           nls.builtins.diagnostics.pylint,
-          -- nls.builtins.diagnostics.tsc,
           -- FORMATTING
           nls.builtins.formatting.black,
-          -- nls.builtins.formatting.clang_format,
-          -- nls.builtins.formatting.dart_format,
           nls.builtins.formatting.fish_indent,
           nls.builtins.formatting.gofmt,
-          -- nls.builtins.formatting.markdownlint,
           nls.builtins.formatting.prettier.with({
             filetypes = {
               "javascript",
@@ -241,6 +202,12 @@ return {
         },
       }
     end,
+  },
+  -- TypeScript Tools
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
   },
   -- Cmdline tools and lsp servers
   {
