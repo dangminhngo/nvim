@@ -4,8 +4,8 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      { "folke/neoconf.nvim", cmd = "Neoconf",                                config = true },
-      { "folke/neodev.nvim",  opts = { experimental = { pathStrict = true } } },
+      { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
+      { "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } },
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "hrsh7th/cmp-nvim-lsp",
@@ -26,7 +26,7 @@ return {
       -- options for vim.lsp.buf.format
       format = {
         formatting_options = nil,
-        timeout_ms = 3000,
+        timeout_ms = 10000,
         -- async = true,
       },
       -- LSP Server Settings
