@@ -99,7 +99,9 @@ return {
 				},
 				sections = {
 					lualine_a = { "mode" },
-					lualine_b = { "branch" },
+					lualine_b = {
+						{ "filename", path = 1, symbols = { modified = " 󰛿 ", readonly = "", unnamed = "" } },
+					},
 					lualine_c = {
 						{
 							"diagnostics",
@@ -111,7 +113,6 @@ return {
 							},
 						},
 						{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-						{ "filename", path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
               -- stylua: ignore
               {
                 function() return require("nvim-navic").get_location() end,
@@ -133,7 +134,7 @@ return {
               },
               -- stylua: ignore
               {
-                function() return "  " .. require("dap").status() end,
+                function() return "󰃤  " .. require("dap").status() end,
                 cond = function () return package.loaded["dap"] and require("dap").status() ~= "" end,
                 color = Util.fg("Debug"),
               },
@@ -156,9 +157,11 @@ return {
 						{ "location", padding = { left = 0, right = 1 } },
 					},
 					lualine_z = {
-						function()
-							return " " .. os.date("%R")
-						end,
+						{
+							"b:gitsigns_head",
+							icon = "󰘬",
+							color = { gui = "bold" },
+						},
 					},
 				},
 				extensions = { "neo-tree", "lazy" },
@@ -280,26 +283,26 @@ return {
 		opts = function()
 			local dashboard = require("alpha.themes.dashboard")
 			local logo = [[
-██████    ████████████████
   ██████    ████████████████
-    ██████    ██████    ██████
-      ██████    ██████    ██████
-      ██████    ██████    ██████
-    ██████    ██████    ██████
-  ██████    ██████    ██████
-██████    ██████    ██████
+  ╚═██████  ╚═██████════██████
+    ╚═██████  ╚═██████  ╚═██████
+      ║ ██████  ║ ██████  ║ ██████
+    ╔═██████  ╔═██████  ╔═██████
+  ╔═██████  ╔═██████  ╔═██████
+╔═██████  ╔═██████  ╔═██████
+╚════╝    ╚════╝    ╚════╝
   ]]
 
 			dashboard.section.header.val = vim.split(logo, "\n")
 			dashboard.section.buttons.val = {
-				dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
-				dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
-				dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
-				dashboard.button("g", " " .. " Find text", ":Telescope live_grep <CR>"),
-				dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
-				dashboard.button("s", " " .. " Restore Session", [[:lua require("persistence").load() <cr>]]),
+				dashboard.button("f", "󰈞 " .. " Find file", ":Telescope find_files <CR>"),
+				dashboard.button("n", "󰈔 " .. " New file", ":ene <BAR> startinsert <CR>"),
+				dashboard.button("r", "󰷊 " .. " Recent files", ":Telescope oldfiles <CR>"),
+				dashboard.button("g", "󰘎 " .. " Find text", ":Telescope live_grep <CR>"),
+				dashboard.button("c", "󰒓 " .. " Config", ":e $MYVIMRC <CR>"),
+				dashboard.button("s", "󰦛 " .. " Restore Session", [[:lua require("persistence").load() <cr>]]),
 				dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>"),
-				dashboard.button("q", " " .. " Quit", ":qa<CR>"),
+				dashboard.button("q", "󰿅 " .. " Quit", ":qa<CR>"),
 			}
 			for _, button in ipairs(dashboard.section.buttons.val) do
 				button.opts.hl = "AlphaButtons"
@@ -308,7 +311,7 @@ return {
 			dashboard.section.header.opts.hl = "AlphaHeader"
 			dashboard.section.buttons.opts.hl = "AlphaButtons"
 			dashboard.section.footer.opts.hl = "AlphaFooter"
-			dashboard.opts.layout[1].val = 8
+			dashboard.opts.layout[1].val = 4
 			return dashboard
 		end,
 		config = function(_, dashboard)
@@ -337,30 +340,37 @@ return {
 		end,
 	},
 
-	-- lsp symbol navigation for lualine
-	{
-		"SmiteshP/nvim-navic",
-		lazy = true,
-		init = function()
-			vim.g.navic_silence = true
-			require("util").on_attach(function(client, buffer)
-				if client.server_capabilities.documentSymbolProvider then
-					require("nvim-navic").attach(client, buffer)
-				end
-			end)
-		end,
-		opts = function()
-			return {
-				separator = " ",
-				highlight = true,
-				depth_limit = 5,
-				icons = require("config").icons.kinds,
-			}
-		end,
-	},
+	-- -- lsp symbol navigation for lualine
+	-- {
+	-- 	"SmiteshP/nvim-navic",
+	-- 	lazy = true,
+	-- 	init = function()
+	-- 		vim.g.navic_silence = true
+	-- 		require("util").on_attach(function(client, buffer)
+	-- 			if client.server_capabilities.documentSymbolProvider then
+	-- 				require("nvim-navic").attach(client, buffer)
+	-- 			end
+	-- 		end)
+	-- 	end,
+	-- 	opts = function()
+	-- 		return {
+	-- 			separator = " ",
+	-- 			highlight = true,
+	-- 			depth_limit = 5,
+	-- 			icons = require("config").icons.kinds,
+	-- 		}
+	-- 	end,
+	-- },
 
 	-- icons
-	{ "nvim-tree/nvim-web-devicons", lazy = true },
+	{
+		"nvim-tree/nvim-web-devicons",
+		lazy = true,
+		opts = {
+			override_by_filename = require("config").icons.devicons.filename,
+			override_by_extension = require("config").icons.devicons.extension,
+		},
+	},
 
 	-- ui components
 	{ "MunifTanjim/nui.nvim", lazy = true },
