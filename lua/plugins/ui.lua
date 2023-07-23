@@ -199,8 +199,7 @@ return {
     version = false, -- wait till new 0.7.0 release to put it back on semver
     event = { "BufReadPre", "BufNewFile" },
     opts = {
-      -- symbol = "▏",
-      symbol = "│",
+      symbol = "╎",
       options = { try_as_border = true },
     },
     init = function()
@@ -339,28 +338,6 @@ return {
       })
     end,
   },
-
-  -- -- lsp symbol navigation for lualine
-  -- {
-  -- 	"SmiteshP/nvim-navic",
-  -- 	lazy = true,
-  -- 	init = function()
-  -- 		vim.g.navic_silence = true
-  -- 		require("util").on_attach(function(client, buffer)
-  -- 			if client.server_capabilities.documentSymbolProvider then
-  -- 				require("nvim-navic").attach(client, buffer)
-  -- 			end
-  -- 		end)
-  -- 	end,
-  -- 	opts = function()
-  -- 		return {
-  -- 			separator = " ",
-  -- 			highlight = true,
-  -- 			depth_limit = 5,
-  -- 			icons = require("config").icons.kinds,
-  -- 		}
-  -- 	end,
-  -- },
 
   -- icons
   {
