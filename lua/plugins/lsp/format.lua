@@ -1,4 +1,4 @@
-local Util = require("lazy.core.util")
+local Util = require "lazy.core.util"
 
 local M = {}
 
@@ -108,7 +108,7 @@ function M.get_formatters(bufnr)
   }
 
   ---@type lsp.Client[]
-  local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
+  local clients = vim.lsp.get_active_clients { bufnr = bufnr }
   for _, client in ipairs(clients) do
     if M.supports_format(client) then
       if (#null_ls > 0 and client.name == "null-ls") or #null_ls == 0 then
@@ -133,7 +133,7 @@ function M.supports_format(client)
   then
     return false
   end
-  return client.supports_method("textDocument/formatting") or client.supports_method("textDocument/rangeFormatting")
+  return client.supports_method "textDocument/formatting" or client.supports_method "textDocument/rangeFormatting"
 end
 
 ---@param opts PluginLspOpts

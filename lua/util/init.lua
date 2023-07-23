@@ -1,4 +1,4 @@
-local Util = require("lazy.core.util")
+local Util = require "lazy.core.util"
 
 local M = {}
 
@@ -43,7 +43,7 @@ function M.opts(name)
   if not plugin then
     return {}
   end
-  local Plugin = require("lazy.core.plugin")
+  local Plugin = require "lazy.core.plugin"
   return Plugin.values(plugin, "opts", false)
 end
 
@@ -60,7 +60,7 @@ function M.get_root()
   ---@type string[]
   local roots = {}
   if path then
-    for _, client in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+    for _, client in pairs(vim.lsp.get_active_clients { bufnr = 0 }) do
       local workspace = client.config.workspace_folders
       local paths = workspace and vim.tbl_map(function(ws)
         return vim.uri_to_fname(ws.uri)
@@ -108,7 +108,7 @@ function M.telescope(builtin, opts)
     if opts.cwd and opts.cwd ~= vim.loop.cwd() then
       opts.attach_mappings = function(_, map)
         map("i", "<a-c>", function()
-          local action_state = require("telescope.actions.state")
+          local action_state = require "telescope.actions.state"
           local line = action_state.get_current_line()
           M.telescope(
             params.builtin,
@@ -136,7 +136,7 @@ function M.float_term(cmd, opts)
   }, opts or {}, { persistent = true })
   ---@cast opts LazyCmdOptions|{interactive?:boolean, esc_esc?:false}
 
-  local termkey = vim.inspect({ cmd = cmd or "shell", cwd = opts.cwd, env = opts.env, count = vim.v.count1 })
+  local termkey = vim.inspect { cmd = cmd or "shell", cwd = opts.cwd, env = opts.env, count = vim.v.count1 }
 
   if terminals[termkey] and terminals[termkey]:buf_valid() then
     terminals[termkey]:toggle()
@@ -240,14 +240,14 @@ function M.lazy_notify()
 end
 
 function M.lsp_get_config(server)
-  local configs = require("lspconfig.configs")
+  local configs = require "lspconfig.configs"
   return rawget(configs, server)
 end
 
 ---@param server string
 ---@param cond fun( root_dir, config): boolean
 function M.lsp_disable(server, cond)
-  local util = require("lspconfig.util")
+  local util = require "lspconfig.util"
   local def = M.lsp_get_config(server)
   def.document_config.on_new_config = util.add_hook_before(def.document_config.on_new_config, function(config, root_dir)
     if cond(root_dir, config) then
@@ -259,7 +259,7 @@ end
 ---@param name string
 ---@param fn fun(name:string)
 function M.on_load(name, fn)
-  local Config = require("lazy.core.config")
+  local Config = require "lazy.core.config"
   if Config.plugins[name] and Config.plugins[name]._.loaded then
     vim.schedule(function()
       fn(name)
