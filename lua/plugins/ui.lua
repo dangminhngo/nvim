@@ -54,8 +54,11 @@ return {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
     keys = {
-      { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle pin" },
-      { "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete non-pinned buffers" },
+      { "<leader>p", "<Cmd>BufferLinePick<CR>", desc = "Pick buffer" },
+      { "<leader>bc", "<Cmd>BufferLinePickClose<CR>", desc = "Pick close" },
+      { "<leader>bp", "<Cmd>BufferLinePick<CR>", desc = "Pick" },
+      { "<leader>bP", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle pin" },
+      { "<leader>bx", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete non-pinned buffers" },
     },
     opts = {
       options = {
@@ -74,7 +77,7 @@ return {
         offsets = {
           {
             filetype = "neo-tree",
-            text = "Neo-tree",
+            text = "File Explorer",
             highlight = "Directory",
             text_align = "left",
           },
