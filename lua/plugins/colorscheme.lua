@@ -1,11 +1,10 @@
 return {
   {
-    -- dir = "~/repos/proxima.nvim",
-    -- dev = true,
-    "dangminhngo/proxima.nvim",
-    lazy = true,
+    dir = "~/repos/crux.nvim",
+    dev = true,
+    -- "dangminhngo/proxima.nvim",
+    -- lazy = true,
     -- opts = {
-    --   style = "midnight",
     -- },
   },
 }
