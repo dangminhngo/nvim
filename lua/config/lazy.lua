@@ -13,6 +13,7 @@ require("lazy").setup {
     { import = "plugins" },
     -- import any extras modules here
     { import = "plugins.extras.lang.typescript" },
+    { import = "plugins.extras.lang.vue" },
     { import = "plugins.extras.lang.tailwind" },
     { import = "plugins.extras.lang.json" },
     { import = "plugins.extras.util.mini-hipatterns" },
