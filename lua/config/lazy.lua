@@ -17,6 +17,7 @@ require("lazy").setup {
     { import = "plugins.extras.lang.css" },
     { import = "plugins.extras.lang.tailwind" },
     { import = "plugins.extras.lang.json" },
+    { import = "plugins.extras.lang.prisma" },
     { import = "plugins.extras.util.mini-hipatterns" },
     { import = "plugins.extras.formatting.prettier" },
     { import = "plugins.extras.linting.eslint" },
