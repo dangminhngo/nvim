@@ -49,7 +49,7 @@ return {
       -- but can be also overridden when specified
       format = {
         formatting_options = nil,
-        timeout_ms = nil,
+        timeout_ms = 10000,
       },
       -- LSP Server Settings
       ---@type lspconfig.options
